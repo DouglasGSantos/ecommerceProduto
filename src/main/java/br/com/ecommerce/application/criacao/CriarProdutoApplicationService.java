@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.ecommerce.application.criacao.request.ProdutoRequest;
 import br.com.ecommerce.domain.Produto;
 import br.com.ecommerce.infrastructure.exception.types.BusinessException;
+import br.com.ecommerce.infrastructure.kafka.KafkaTopics;
 import br.com.ecommerce.infrastructure.repository.ProdutoRepository;
 
 @Service
@@ -45,7 +46,7 @@ public class CriarProdutoApplicationService {
 	}
 
 	private void informarCriacaoProduto(Produto produto) {
-		kafkaTemplate.send("ECOMMERCE_PRODUTO_NOVO", produto);
+		kafkaTemplate.send(KafkaTopics.ECOMMERCE_PRODUTO_NOVO.toString(), produto);
 
 	}
 
