@@ -14,8 +14,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.kafka.core.KafkaTemplate;
 
 import br.com.ecommerce.application.criacao.request.ProdutoRequest;
+import br.com.ecommerce.domain.Produto;
 import br.com.ecommerce.infrastructure.exception.types.BusinessException;
 import br.com.ecommerce.infrastructure.repository.ProdutoRepository;
 
@@ -26,6 +28,9 @@ class CriarProdutoApplicationServiceTest {
 
 	@Mock
 	private ProdutoRepository produtoRepository;
+	
+	@Mock
+	private KafkaTemplate<String, Produto> kafkaTemplate;
 
 	@BeforeEach
 	public void setup() {
